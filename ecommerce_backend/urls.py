@@ -26,5 +26,6 @@ route.register("", ProductViewSet, basename='ProductViewSet')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(route.urls))
+    path('api/', include(route.urls)),
+    path('', include("home.urls")),
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

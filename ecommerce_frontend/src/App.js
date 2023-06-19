@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Navcom from './Navcom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,20 +8,38 @@ import Details from './Details';
 import Update from './Update';
 import Home from './Home';
 import Footer from './Footer';
+import Allproducts from './Allproducts';
+import Showproducts from './Showproduct';
+import About from './About';
+import Contact from './Contact';
+import Login from './Login';
+import Signin from './Signin';
+import { Authprovider } from './context/Authcontext';
+import PrivateRoute from './utils/PrivateRoute';
 
 
 function App() {
   return (
     <BrowserRouter>
+    <Authprovider>
       <Navcom/>
       <Routes>
         <Route  path='/' Component={Home} />
+        <Route path='/signin' Component={Signin} />
+        <Route Component={PrivateRoute}>
+        <Route  path='/about' Component={About} />
+        <Route  path='/contact' Component={Contact} />
         <Route  path='/products' Component={Products} />
+        <Route  path='/allproducts' Component={Allproducts} />
         <Route path='/addproducts' Component={Addproducts} />
-        <Route path='/:id/' Component={Details} />
+        <Route path='details/:id/' Component={Details} />
+        <Route path='/:id/' Component={Showproducts} />
         <Route path='/:id/update' Component={Update} />
+        <Route path='/login' Component={Login} />
+        </Route>
       </Routes>
       <Footer />
+      </Authprovider>
     </BrowserRouter>
   );
 }
