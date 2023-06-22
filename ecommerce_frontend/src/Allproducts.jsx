@@ -24,6 +24,7 @@ const Allproducts = () => {
     }, [])
     return (
         <>
+        <div className="allproducts">
             <CarouselCom />
             <div className="all-pdt-con">
                 <div className="products">
@@ -57,7 +58,7 @@ const Allproducts = () => {
                     }
                 </div>
             </div>
-            
+            </div>
         </>
     );
 }

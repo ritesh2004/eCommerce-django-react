@@ -5,10 +5,12 @@ const Footer = () =>{
 
 	const navigate = useNavigate()
 
+	let year = new Date().getFullYear()
+
 	return (
 		<>
-			<footer>
-				<h2 className="text-center" style={{width:'100%', backgroundColor:'#02343C'}} onClick={()=>{navigate('/products/')}}>Footer</h2>
+			<footer className="static-bottom">
+				<span style={{color:'white', fontWeight:'500', fontSize:'larger'}}>© Copyright {year}</span>
 			</footer>
 		</>
 	);

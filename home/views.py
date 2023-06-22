@@ -1,7 +1,12 @@
 from django.shortcuts import render
 from .models import Products
+from .models import Carts
+from .models import Address
 from .serializers import ProductSerializers
+from .serializers import CartsSerializer
+from .serializers import AddressSerializers
 from rest_framework import viewsets
+from rest_framework.views import View
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
@@ -15,12 +20,32 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import UserSerializer, RegisterSerializer
 
+
 # Create your views here.
+user = ""
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Products.objects.all()
     serializer_class = ProductSerializers
+    
+class CartsViewSet(viewsets.ModelViewSet):
+    queryset = Carts.objects.all()
+    serializer_class = CartsSerializer
+    
+class CartsAddedViewSet(viewsets.ModelViewSet):
+    model = Carts
+    serializer_class = CartsSerializer
+    def get_queryset(self):
+        # user = self.request.user 
+        user = self.kwargs['username']
+        queryset = Carts.objects.filter(user= user)
+        return queryset
+        
+class AddressViewSet(viewsets.ModelViewSet):
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializers
+        
     
     
 # Register API
@@ -42,7 +67,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-
+        user = user
         # Add custom claims
         token['username'] = user.username
         # ...

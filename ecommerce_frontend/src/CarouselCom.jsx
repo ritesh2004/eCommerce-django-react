@@ -48,11 +48,6 @@ const CarouselCom = () => {
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
-                    <div className="feature">
-                        <span className="feature-text">All Products</span>
-                        <br />
-
-                    </div>
                 </div>
             </div>
         </>
